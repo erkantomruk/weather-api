@@ -15,4 +15,10 @@ public class GlobalExceptionHandler {
         log.error("External API error: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("Error occurred while calling external API: " + ex.getMessage());
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        log.error("Parameter error: " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error occurred for parameters: " + ex.getMessage());
+    }
 }

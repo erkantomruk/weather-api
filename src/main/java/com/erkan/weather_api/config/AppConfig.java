@@ -1,4 +1,4 @@
-package com.erkan.weather_api;
+package com.erkan.weather_api.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

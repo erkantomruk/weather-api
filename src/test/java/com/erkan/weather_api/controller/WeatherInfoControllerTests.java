@@ -50,4 +50,25 @@ public class WeatherInfoControllerTests {
 
         verify(weatherInfoService, times(1)).getWeatherInfo(latitude, longitude, eventTime);
     }
+    @Test
+    public void getWeatherInfoShouldReturnBadRequestForInvalidLatitude() throws Exception {
+        // Act & Assert
+        mockMvc.perform(get("/weather")
+                        .param("latitude", "10.12345")  // More than 4 decimal places
+                        .param("longitude", "20.1234")
+                        .param("eventTime", "2024-08-01T00:00:00Z")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetWeatherInfoShouldReturnBadRequestForInvalidLongitude() throws Exception {
+        // Act & Assert
+        mockMvc.perform(get("/weather")
+                        .param("latitude", "10.1234")
+                        .param("longitude", "20.12345")  // More than 4 decimal places
+                        .param("eventTime", "2024-08-01T00:00:00Z")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }
