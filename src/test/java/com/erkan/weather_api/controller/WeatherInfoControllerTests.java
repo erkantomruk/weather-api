@@ -62,7 +62,7 @@ public class WeatherInfoControllerTests {
     }
 
     @Test
-    public void testGetWeatherInfoShouldReturnBadRequestForInvalidLongitude() throws Exception {
+    public void getWeatherInfoShouldReturnBadRequestForInvalidLongitude() throws Exception {
         // Act & Assert
         mockMvc.perform(get("/weather")
                         .param("latitude", "10.1234")
